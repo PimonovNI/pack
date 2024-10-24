@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master", "main" ]
+
+jobs:
+  read-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with:
+          owner: 'PimonovNI'
+          package-name: 'io.project.pack'
+          package-type: 'maven'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-versions-to-keep: 1
+          ignore-versions: '^(?!.+SNAPSHOT).*$'
