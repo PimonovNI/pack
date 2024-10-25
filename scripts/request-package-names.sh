@@ -52,7 +52,7 @@ page=1
 packages=''
 
 function requestPackages() {
-    url="https://api.github.com/orgs/$orgName/packages?package_type=maven&per_page=100&page=$page"
+    url="https://api.github.com/user/packages?package_type=maven&per_page=100&page=$page"
     response=$(curl -s -H "Authorization: Bearer $token" "$url")
     countOnThisPage=$(echo "$response" | jq -c length)
     packagesOnThisPage=$(echo "$response" | \
